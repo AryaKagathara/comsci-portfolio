@@ -12,11 +12,11 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KKXL77TH7M"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-      gtag('config', 'G-KKXL77TH7M');
+        gtag('config', 'G-KKXL77TH7M');
     </script>
     <!-- PDF.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
@@ -26,6 +26,15 @@
     <nav class="viewer-nav">
         <img src="Logo.png" alt="Logo" class="logo-img" style="height: 32px;">
         <h2 id="project-list-title">Loading Projects...</h2>
+        <a href="https://comsci.tech" target="_blank" class="visit-btn">
+            Visit Website
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+        </a>
     </nav>
 
     <main class="portfolio-container">
@@ -37,11 +46,11 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-             const params = new URLSearchParams(window.location.search);
-             const category = params.get('category');
-             if (category) {
-                 document.getElementById('project-list-title').textContent = category.replace(/-/g, ' ');
-             }
+            const params = new URLSearchParams(window.location.search);
+            const category = params.get('category');
+            if (category) {
+                document.getElementById('project-list-title').textContent = category.replace(/-/g, ' ');
+            }
         });
     </script>
 </body>
