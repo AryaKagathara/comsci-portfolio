@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 </head>
 
 <body>
@@ -17,36 +19,47 @@
         <p class="subtitle">Showcasing creative excellence and technical precision</p>
     </header>
 
-    <main class="slider-container">
-        <!-- Navigation Buttons -->
-        <button class="nav-btn prev-btn" aria-label="Previous PDF">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="m15 18-6-6 6-6" />
-            </svg>
-        </button>
-        <button class="nav-btn next-btn" aria-label="Next PDF">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="m9 18 6-6-6-6" />
-            </svg>
-        </button>
+    <main class="portfolio-container">
+        <div class="portfolio-grid">
+            <!-- Card 1 -->
+            <div class="portfolio-card" data-pdf="Arya-Kagathara-Design-Portfolio.pdf">
+                <div class="card-preview">
+                    <canvas class="thumbnail-canvas"></canvas>
+                    <div class="loader"></div>
+                </div>
+                <div class="card-info">
+                    <h3>Design Portfolio</h3>
+                    <p>Arya Kagathara</p>
+                    <a href="viewer.html?file=Arya-Kagathara-Design-Portfolio.pdf" class="see-more-btn">See More</a>
+                </div>
+            </div>
 
-        <!-- Slides Wrapper -->
-        <div class="slides-wrapper">
-            <div class="slide">
-                <embed src="Arya-Kagathara-Design-Portfolio.pdf" type="application/pdf">
+            <!-- Card 2 -->
+            <div class="portfolio-card" data-pdf="BLKResumes.pdf">
+                <div class="card-preview">
+                    <canvas class="thumbnail-canvas"></canvas>
+                    <div class="loader"></div>
+                </div>
+                <div class="card-info">
+                    <h3>BLK Resumes</h3>
+                    <p>Professional Profiles</p>
+                    <a href="viewer.html?file=BLKResumes.pdf" class="see-more-btn">See More</a>
+                </div>
             </div>
-            <div class="slide">
-                <embed src="BLKResumes.pdf" type="application/pdf">
-            </div>
-            <div class="slide">
-                <embed src="Roberto Bolle Foundation.pdf" type="application/pdf">
+
+            <!-- Card 3 -->
+            <div class="portfolio-card" data-pdf="Roberto Bolle Foundation.pdf">
+                <div class="card-preview">
+                    <canvas class="thumbnail-canvas"></canvas>
+                    <div class="loader"></div>
+                </div>
+                <div class="card-info">
+                    <h3>Roberto Bolle Foundation</h3>
+                    <p>Cultural Impact</p>
+                    <a href="viewer.html?file=Roberto Bolle Foundation.pdf" class="see-more-btn">See More</a>
+                </div>
             </div>
         </div>
-
-        <!-- Pagination -->
-        <div class="indicators"></div>
     </main>
 
     <script src="script.js"></script>

@@ -1,58 +1,45 @@
+const pdfjsLib = window['pdfjs-dist/build/pdf'];
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+
 document.addEventListener('DOMContentLoaded', () => {
-    const wrapper = document.querySelector('.slides-wrapper');
-    const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    const dotsContainer = document.querySelector('.indicators');
+    const cards = document.querySelectorAll('.portfolio-card');
 
-    let currentIndex = 0;
-    const totalSlides = slides.length;
+    // --- PDF THUMBNAIL LOGIC ---
+    async function renderThumbnail(card) {
+        const pdfUrl = card.dataset.pdf;
+        const canvas = card.querySelector('.thumbnail-canvas');
+        const loader = card.querySelector('.loader');
 
-    // Create pagination dots
-    slides.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(index));
-        dotsContainer.appendChild(dot);
-    });
+        try {
+            const loadingTask = pdfjsLib.getDocument(pdfUrl);
+            const pdf = await loadingTask.promise;
+            const page = await pdf.getPage(1);
 
-    const dots = document.querySelectorAll('.dot');
+            // Calculate scale to fit width 100%
+            const unscaledViewport = page.getViewport({ scale: 1 });
+            const containerWidth = card.querySelector('.card-preview').clientWidth || 400;
+            const scale = (containerWidth / unscaledViewport.width) * 2; // HD multiplier
+            
+            const viewport = page.getViewport({ scale: scale });
+            const context = canvas.getContext('2d');
+            
+            // Set canvas size (we want top part, so we height-limit it)
+            canvas.width = viewport.width;
+            canvas.height = Math.min(viewport.height, 2000); 
 
-    function updateSlider() {
-        wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-        
-        // Update dots
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
-        });
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            
+            await page.render(renderContext).promise;
+            loader.classList.add('hidden');
+        } catch (error) {
+            console.error('Error rendering thumbnail:', error);
+            loader.innerHTML = '<span style="color: grey; font-size: 12px;">Preview Unavailable</span>';
+        }
     }
 
-    function goToSlide(index) {
-        currentIndex = index;
-        updateSlider();
-    }
-
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateSlider();
-    }
-
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        updateSlider();
-    }
-
-    // Event Listeners
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
-
-    // Keyboard Navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') nextSlide();
-        if (e.key === 'ArrowLeft') prevSlide();
-    });
-
-    // Handle window resize (optional, CSS handles most)
-    window.addEventListener('resize', updateSlider);
+    // Initialize thumbnails for all cards
+    cards.forEach(card => renderThumbnail(card));
 });
