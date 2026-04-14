@@ -21,7 +21,7 @@ const PORTFOLIO_DATA = {
             "Sadbhavna Clinic.pdf", "Skin-Medicals.pdf", "StayCal.pdf",
             "StoryHero.pdf", "Svaya.pdf", "Synthesise.pdf", "Tasky-Brand-Guidelines.pdf",
             "TerraFirm.pdf", "Trraa-Brand-Guidelines.pdf", "VanguardLawyerFirm.pdf",
-            "Zen&Steel.pdf"
+            "Zen&Steel.pdf", "Minder Brand Guidelines.pdf",
         ]
     },
     "Social-Media-Posts": {
