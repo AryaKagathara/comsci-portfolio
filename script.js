@@ -79,7 +79,7 @@ const PORTFOLIO_DATA = {
             "DA-Studio.pdf", "EatCoast.pdf", "KV-Energy-Revenue.pdf",
             "Medical-Escape.pdf", "Mipo.pdf", "Myotonx.pdf", "NuAI.pdf",
             "OPA.pdf", "One-Stop-Pizza.pdf", "Papermans Coffeehouse.pdf",
-            "RMS.pdf", "Recre.pdf", "Roberto Bolle Foundation.pdf", "W3Dart.pdf"
+            "RMS.pdf", "Recre.pdf", "Roberto Bolle Foundation.pdf", "W3Dart.pdf", "Tasky.pdf"
         ]
     }
 };
